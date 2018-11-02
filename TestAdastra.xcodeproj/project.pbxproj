@@ -15,6 +15,8 @@
 		B82BF374218B944E00BD0F8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82BF372218B944E00BD0F8A /* LaunchScreen.storyboard */; };
 		B82BF37F218B944E00BD0F8A /* TestAdastraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BF37E218B944E00BD0F8A /* TestAdastraTests.swift */; };
 		B82BF38A218B944E00BD0F8A /* TestAdastraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BF389218B944E00BD0F8A /* TestAdastraUITests.swift */; };
+		B82BF399218BF74600BD0F8A /* GlobalMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BF398218BF74600BD0F8A /* GlobalMethod.swift */; };
+		B82BF39B218BF75900BD0F8A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BF39A218BF75900BD0F8A /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		B82BF385218B944E00BD0F8A /* TestAdastraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestAdastraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82BF389218B944E00BD0F8A /* TestAdastraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAdastraUITests.swift; sourceTree = "<group>"; };
 		B82BF38B218B944E00BD0F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B82BF398218BF74600BD0F8A /* GlobalMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMethod.swift; sourceTree = "<group>"; };
+		B82BF39A218BF75900BD0F8A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		B82BF365218B944D00BD0F8A /* TestAdastra */ = {
 			isa = PBXGroup;
 			children = (
+				B82BF397218BF71E00BD0F8A /* Helper */,
 				B82BF366218B944D00BD0F8A /* AppDelegate.swift */,
 				B82BF368218B944D00BD0F8A /* ViewController.swift */,
 				B82BF36A218B944D00BD0F8A /* Main.storyboard */,
@@ -126,6 +131,15 @@
 				B82BF38B218B944E00BD0F8A /* Info.plist */,
 			);
 			path = TestAdastraUITests;
+			sourceTree = "<group>";
+		};
+		B82BF397218BF71E00BD0F8A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B82BF398218BF74600BD0F8A /* GlobalMethod.swift */,
+				B82BF39A218BF75900BD0F8A /* TableViewCell.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,9 +273,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82BF39B218BF75900BD0F8A /* TableViewCell.swift in Sources */,
 				B82BF369218B944D00BD0F8A /* ViewController.swift in Sources */,
 				B82BF36F218B944D00BD0F8A /* TestAdastra.xcdatamodeld in Sources */,
 				B82BF367218B944D00BD0F8A /* AppDelegate.swift in Sources */,
+				B82BF399218BF74600BD0F8A /* GlobalMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
