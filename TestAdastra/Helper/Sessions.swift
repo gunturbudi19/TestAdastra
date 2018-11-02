@@ -17,6 +17,5 @@ class Sessions: NSObject {
     func addColorLibrary(array: NSArray){
          UserDefaults.standard.set(array, forKey: Fieldname().colorLibrary)
     }
-
     
 }

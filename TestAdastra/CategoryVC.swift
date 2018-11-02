@@ -45,8 +45,6 @@ class CategoryVC: UIViewController {
 
     func checkCategory(){
             arrayCategory = UserDefaults.standard.value(forKey: Fieldname().colorLibrary) as? Array<Any> ?? []
-            //        print(arrayToDo)
-            
             if arrayCategory.count == 0 {
                 arrayCategory = Fieldname().colors as! [Any]
                 Sessions().addColorLibrary(array: arrayCategory as NSArray)
@@ -65,15 +63,6 @@ class CategoryVC: UIViewController {
         Sessions().addColorLibrary(array: arrayCategory as NSArray)
          _ = navigationController?.popViewController(animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -83,7 +72,6 @@ extension CategoryVC: UITextFieldDelegate{
 
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        //        print("Begin Editing")
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

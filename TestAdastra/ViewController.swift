@@ -40,12 +40,10 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        //commit
         super.viewDidLoad()
         self.formatInputKeyboard()
         self.formatAccessoryKeyboard()
         categoryActionSchedule = "add"
-        //self.checkToDo()
         isKeyboardShown = false
         
         self.registerForKeyboardNotification()
@@ -55,7 +53,6 @@ class ViewController: UIViewController {
     func checkToDo(){
         arrayToDo = UserDefaults.standard.value(forKey: Fieldname().toDoName) as? Array<Any> ?? []
         arrayCategory = UserDefaults.standard.value(forKey: Fieldname().colorLibrary) as? Array<Any> ?? []
-//        print(arrayToDo)
         if arrayToDo.count == 0 {
             print("No Data")
         }else{
@@ -114,18 +111,13 @@ class ViewController: UIViewController {
         
     }
     var datePicker = UIDatePicker()
-//    var listTimeInput = [Int]()
-//    var timePickerView = UIPickerView()
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
     var currentDateString = String()
     var pickerCategory = UIPickerView()
     var categoryValues = [String]()
-//    var currentTimeString = String()
-    
+
     func formatInputKeyboard(){
-      //  timePickerView.delegate = self
-      //  timePickerView.tag=2
         pickerCategory.delegate = self
         dateFormatter.dateFormat = "EEE yyyy-MM-dd"
         
@@ -146,12 +138,9 @@ class ViewController: UIViewController {
         }else{
             txDateToDo.text = "\(dateFormatter.string(from: Date()))"
         }
-        
-       // txTime.text = "\(jamInt):00"
-        
+
         currentDateString = txDateToDo.text!
-       // currentTimeString = txTime.text!
-        
+     
         
         datePicker.datePickerMode = .date
         datePicker.maximumDate = maxDate
@@ -202,9 +191,6 @@ class ViewController: UIViewController {
             
             if categoryActionSchedule == "add"{
                 arrayToDo.append(tempDict)
-//                Sessions().addToDoList(array: arrayToDo)
-//                self.isShowAddToDo(isShow: false, category: "add", dict: [:])
-//                self.tblToDo.reloadData()
             }else{
                 arrayToDo[indexChanged] = tempDict
                
@@ -305,7 +291,6 @@ class ViewController: UIViewController {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
                 self.settingsView.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
             }) { (success) in
-                //  self.isShowDimWithLoading(isDim: false, isLoading: false)
                 self.isShowDimView(isShow: false)
                 self.settingsView.removeFromSuperview()
             }
@@ -326,12 +311,6 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: idIdentifier,
                                                  for: indexPath) as! TableViewCell
          let dictData = arrayToDo[indexPath.row] as! NSDictionary
-      //  print("dictData : \(dictData)")
-//        if(fmod(Double(indexPath.row), 2) == 0){
-//        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .yellow))
-//        }else {
-//        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .red))
-//        }
         cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: GlobalMethod().hexStringToUIColor(hex: dictData[Fieldname().hexaTD] as? String ?? "#FFFFFF")))
         
 
@@ -367,20 +346,13 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource
         
         if tableView == tblToDo {
             let tempDict = arrayToDo[indexPath.row] as! NSDictionary
-//            print("select : \(tempDict)")
             categoryActionSchedule = "put"
             indexChanged = indexPath.row
             self.isShowAddToDo(isShow: true, category: categoryActionSchedule, dict: tempDict)
         }
         
     }
-    
-    /*
-     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-     
-     return 100
-     }
-     */
+ 
     
 }
 
@@ -393,23 +365,14 @@ extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
     
     
     
-    // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-
-        
         return arrayCategory.count
     }
     
-    // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
         
         var result = String()
-
-//        if pickerView == timePickerView {
-//            result = String("\(listTimeInput[row]):00")
-//        }
         let tempDictColor = arrayCategory[row] as! NSDictionary
         result  = tempDictColor["category"] as? String ?? ""
         return result
@@ -417,7 +380,6 @@ extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        print(row)
         var result = String()
         let tempDictColor = arrayCategory[row] as! NSDictionary
         result = tempDictColor["category"] as? String ?? ""
@@ -428,7 +390,6 @@ extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
 
 
 
-// Format TextView
 extension ViewController: UITextFieldDelegate{
     
     func textViewDidChange(_ textView: UITextView) {
@@ -436,7 +397,6 @@ extension ViewController: UITextFieldDelegate{
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        print("Begin Editing")
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -444,9 +404,7 @@ extension ViewController: UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         let dateOrder = "\(dateFormatter.string(from: datePicker.date))"
-//        print(dateOrder)
         if textField.isEqual(txDateToDo){
             txDateToDo.text = dateOrder
         }
@@ -457,8 +415,6 @@ extension ViewController: UITextFieldDelegate{
 extension ViewController{
     
     func registerForKeyboardNotification() {
-        
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification , object: nil)
         
@@ -467,8 +423,6 @@ extension ViewController{
     
     @objc func keyboardWillShow(notification: Notification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            //print("notification: Keyboard will show || with keyboard height : \(keyboardSize.height)")
-            // if self.view.frame.origin.y == 0{
             if !isKeyboardShown{
                 isKeyboardShown = true
                 self.view.frame.origin.y -= 100//keyboardSize.height
@@ -479,8 +433,6 @@ extension ViewController{
     
     @objc func keyboardWillHide(notification: Notification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            // print("notification: Keyboard will hide || with keyboard height : \(keyboardSize.height)")
-            // if self.view.frame.origin.y != 0 {
             if isKeyboardShown{
                 isKeyboardShown = false
                 self.view.frame.origin.y += 100//keyboardSize.height

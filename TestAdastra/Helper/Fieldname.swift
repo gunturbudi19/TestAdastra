@@ -17,9 +17,7 @@ class Fieldname: NSObject {
     let categoryTD = "categoryToDo"
     let dateTD = "dateToDo"
     let hexaTD = "hexaToDo"
-    
-    let setColors = ["catDarkGreen", "catDarkYellow", "catGreen", "catPink", "catOrange", "catRed"]
-    
+
     let colors : NSArray = [
         ["name": "Dark Green", "hexa": "#79A700" , "category" : "Home"]
         ,["name": "Dark Yellow", "hexa": "#E2B400" , "category" : "Outdoor"]
