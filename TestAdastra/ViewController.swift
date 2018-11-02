@@ -252,7 +252,11 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource
          let dictData = arrayToDo[indexPath.row] as! NSDictionary
         print("dictData : \(dictData)")
        // cell.contentView.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .yellow))
-       
+        if(fmod(Double(indexPath.row), 2) == 0){
+        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .yellow))
+        }else {
+        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .red))
+        }
         cell.lblNameToDo.text = dictData[Fieldname().nameTD] as? String ?? ""
         cell.lblDateToDo.text = dictData[Fieldname().dateTD] as? String ?? ""
         cell.lblCategoryToDo.text = dictData[Fieldname().categoryTD] as? String ?? ""
@@ -261,20 +265,15 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource
     
     func createGradientLayer(firstColor : UIColor , secondColor : UIColor) -> CALayer{
         gradientLayer = CAGradientLayer()
-        
         gradientLayer.frame = self.view.bounds
-        
         gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
-        
         return gradientLayer
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if(tableView.isEqual(tblToDo)){
             if editingStyle == .delete {
-                print("Deleted")
                 self.arrayToDo.remove(at: indexPath.row)
-              // arrayToDo.rem
                 Sessions().addToDoList(array: arrayToDo)
                 self.tblToDo.deleteRows(at: [indexPath], with: .automatic)
                

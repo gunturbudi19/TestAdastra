@@ -45,6 +45,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgH-Ah-lCX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="category_toDo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyd-gV-rjI">
                                                     <rect key="frame" x="250.5" y="23" width="110.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -67,7 +71,11 @@
                                             <constraints>
                                                 <constraint firstItem="yyd-gV-rjI" firstAttribute="centerY" secondItem="BCq-z2-dvs" secondAttribute="centerY" id="Asi-wb-gHj"/>
                                                 <constraint firstAttribute="trailing" secondItem="yyd-gV-rjI" secondAttribute="trailing" constant="14" id="G5X-RB-urw"/>
+                                                <constraint firstItem="xgH-Ah-lCX" firstAttribute="centerY" secondItem="BCq-z2-dvs" secondAttribute="centerY" id="Ij3-4t-HKZ"/>
                                                 <constraint firstItem="VGE-AV-FNh" firstAttribute="leading" secondItem="viC-sh-rEg" secondAttribute="leading" id="Jdo-fs-kfO"/>
+                                                <constraint firstItem="xgH-Ah-lCX" firstAttribute="width" secondItem="BCq-z2-dvs" secondAttribute="width" id="OhO-oJ-IWd"/>
+                                                <constraint firstItem="xgH-Ah-lCX" firstAttribute="centerX" secondItem="BCq-z2-dvs" secondAttribute="centerX" id="aR2-qi-Rib"/>
+                                                <constraint firstItem="xgH-Ah-lCX" firstAttribute="height" secondItem="BCq-z2-dvs" secondAttribute="height" id="cIb-Ow-Pg5"/>
                                                 <constraint firstItem="viC-sh-rEg" firstAttribute="leading" secondItem="BCq-z2-dvs" secondAttribute="leading" constant="15" id="mMW-Oh-rLX"/>
                                                 <constraint firstItem="VGE-AV-FNh" firstAttribute="top" secondItem="viC-sh-rEg" secondAttribute="bottom" constant="2" id="vON-6C-DpO"/>
                                                 <constraint firstItem="viC-sh-rEg" firstAttribute="top" secondItem="BCq-z2-dvs" secondAttribute="top" constant="11" id="xSK-iH-ibX"/>
@@ -77,6 +85,7 @@
                                             <outlet property="lblCategoryToDo" destination="yyd-gV-rjI" id="jBU-V2-VP2"/>
                                             <outlet property="lblDateToDo" destination="VGE-AV-FNh" id="30R-mP-IZm"/>
                                             <outlet property="lblNameToDo" destination="viC-sh-rEg" id="xQ9-tm-g2k"/>
+                                            <outlet property="viewBG" destination="xgH-Ah-lCX" id="D0G-HP-5bq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

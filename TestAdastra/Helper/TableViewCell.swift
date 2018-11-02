@@ -14,6 +14,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var lblNameToDo: UILabel!
     @IBOutlet var lblCategoryToDo: UILabel!
     @IBOutlet var lblDateToDo: UILabel!
+    @IBOutlet var viewBG: UIView!
     
     
     override func awakeFromNib() {
