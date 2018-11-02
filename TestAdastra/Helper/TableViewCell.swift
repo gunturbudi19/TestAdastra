@@ -10,6 +10,12 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
+    
+    @IBOutlet var lblNameToDo: UILabel!
+    @IBOutlet var lblCategoryToDo: UILabel!
+    @IBOutlet var lblDateToDo: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

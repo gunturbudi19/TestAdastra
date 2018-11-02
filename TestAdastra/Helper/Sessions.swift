@@ -9,5 +9,14 @@
 import UIKit
 
 class Sessions: NSObject {
+    
+    func addToDoList(array: Array<Any>){
+        UserDefaults.standard.set(array, forKey: Fieldname().toDoName)
+    }
+    
+    func addColorLibrary(array: NSArray){
+         UserDefaults.standard.set(array, forKey: Fieldname().colorLibrary)
+    }
 
+    
 }
