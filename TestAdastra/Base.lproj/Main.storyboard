@@ -56,13 +56,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name_toDo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viC-sh-rEg">
-                                                    <rect key="frame" x="15" y="11" width="93" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="93" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17-19-2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGE-AV-FNh">
-                                                    <rect key="frame" x="15" y="34" width="72" height="17"/>
+                                                    <rect key="frame" x="15" y="36" width="72" height="17"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -77,8 +77,8 @@
                                                 <constraint firstItem="xgH-Ah-lCX" firstAttribute="centerX" secondItem="BCq-z2-dvs" secondAttribute="centerX" id="aR2-qi-Rib"/>
                                                 <constraint firstItem="xgH-Ah-lCX" firstAttribute="height" secondItem="BCq-z2-dvs" secondAttribute="height" id="cIb-Ow-Pg5"/>
                                                 <constraint firstItem="viC-sh-rEg" firstAttribute="leading" secondItem="BCq-z2-dvs" secondAttribute="leading" constant="15" id="mMW-Oh-rLX"/>
-                                                <constraint firstItem="VGE-AV-FNh" firstAttribute="top" secondItem="viC-sh-rEg" secondAttribute="bottom" constant="2" id="vON-6C-DpO"/>
-                                                <constraint firstItem="viC-sh-rEg" firstAttribute="top" secondItem="BCq-z2-dvs" secondAttribute="top" constant="11" id="xSK-iH-ibX"/>
+                                                <constraint firstItem="VGE-AV-FNh" firstAttribute="top" secondItem="viC-sh-rEg" secondAttribute="bottom" constant="3" id="vON-6C-DpO"/>
+                                                <constraint firstItem="viC-sh-rEg" firstAttribute="top" secondItem="BCq-z2-dvs" secondAttribute="top" constant="12" id="xSK-iH-ibX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -109,18 +109,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="To Do App" id="W8r-dW-TCe">
-                        <rightBarButtonItems>
-                            <barButtonItem image="icAdd" id="EF2-87-8dA">
-                                <connections>
-                                    <action selector="actAdd:" destination="BYZ-38-t0r" id="IBp-Hd-Jtv"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="icSetting" id="ikb-IA-kZs">
-                                <connections>
-                                    <action selector="actSetting:" destination="BYZ-38-t0r" id="iAy-Bx-JVe"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" image="icSetting" id="ikb-IA-kZs">
+                            <connections>
+                                <action selector="actSetting:" destination="BYZ-38-t0r" id="iAy-Bx-JVe"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="icAdd" id="EF2-87-8dA">
+                            <connections>
+                                <action selector="actAdd:" destination="BYZ-38-t0r" id="IBp-Hd-Jtv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addToDoView" destination="14h-ye-Lxm" id="lAn-TD-Qlo"/>
@@ -154,12 +152,18 @@
                                 <action selector="closeSettingView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hGI-pS-NMb"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ea1-GV-Qpv">
+                            <rect key="frame" x="16" y="71" width="129" height="30"/>
+                            <state key="normal" title="Add New Category"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="lF3-2X-cj2" firstAttribute="trailing" secondItem="Uzr-3f-Vl8" secondAttribute="trailing" constant="16" id="45Q-cu-4O1"/>
                         <constraint firstItem="XxK-w6-1L7" firstAttribute="leading" secondItem="ehD-Zb-w5p" secondAttribute="trailing" constant="16" id="9aX-2F-vYz"/>
                         <constraint firstItem="XxK-w6-1L7" firstAttribute="top" secondItem="Uzr-3f-Vl8" secondAttribute="bottom" constant="5" id="OQl-p4-tDv"/>
+                        <constraint firstItem="ea1-GV-Qpv" firstAttribute="top" secondItem="ehD-Zb-w5p" secondAttribute="bottom" constant="6" id="VEO-4a-hkj"/>
+                        <constraint firstItem="ea1-GV-Qpv" firstAttribute="leading" secondItem="ehD-Zb-w5p" secondAttribute="leading" id="X70-eR-4Mr"/>
                         <constraint firstItem="ehD-Zb-w5p" firstAttribute="centerY" secondItem="XxK-w6-1L7" secondAttribute="centerY" id="aLb-L5-Jrj"/>
                         <constraint firstItem="Uzr-3f-Vl8" firstAttribute="top" secondItem="lF3-2X-cj2" secondAttribute="top" constant="9" id="dYG-XP-SN0"/>
                         <constraint firstItem="lF3-2X-cj2" firstAttribute="trailing" secondItem="XxK-w6-1L7" secondAttribute="trailing" constant="13" id="rHU-jg-VOU"/>
@@ -229,8 +233,8 @@
                             </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04G-IZ-aQ1">
-                            <rect key="frame" x="135" y="250" width="30" height="30"/>
-                            <state key="normal" title="Add"/>
+                            <rect key="frame" x="133" y="250" width="34" height="30"/>
+                            <state key="normal" title="Save"/>
                             <connections>
                                 <action selector="actAddToDo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mjp-E8-ZMp"/>
                             </connections>

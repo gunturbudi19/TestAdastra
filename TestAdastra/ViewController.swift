@@ -24,12 +24,16 @@ class ViewController: UIViewController {
     
     var urls = String()
     var arrayToDo = Array<Any>()
+    var arrayCategory = Array<Any>()
     var gradientLayer: CAGradientLayer!
     
     var dictToDo = NSDictionary()
     
     var isKeyboardShown = Bool()
-    
+    var categoryActionSchedule = String()
+    var indexChanged = Int()
+    var hexaToSave = String()
+   
     
     override func viewWillAppear(_ animated: Bool) {
        // self.checkToDo()
@@ -40,20 +44,29 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.formatInputKeyboard()
         self.formatAccessoryKeyboard()
+        categoryActionSchedule = "add"
         self.checkToDo()
         isKeyboardShown = false
+        
         self.registerForKeyboardNotification()
       
     }
     
     func checkToDo(){
         arrayToDo = UserDefaults.standard.value(forKey: Fieldname().toDoName) as? Array<Any> ?? []
+        arrayCategory = UserDefaults.standard.value(forKey: Fieldname().colorLibrary) as? Array<Any> ?? []
         print(arrayToDo)
         if arrayToDo.count == 0 {
             print("No Data")
         }else{
             tblToDo.reloadData()
         }
+        
+        if arrayCategory.count == 0 {
+            arrayCategory = Fieldname().colors as! [Any]
+        }
+        
+        
     }
     
     func formatView(){
@@ -97,12 +110,14 @@ class ViewController: UIViewController {
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
     var currentDateString = String()
+    var pickerCategory = UIPickerView()
+    var categoryValues = [String]()
 //    var currentTimeString = String()
     
     func formatInputKeyboard(){
       //  timePickerView.delegate = self
       //  timePickerView.tag=2
-        
+        pickerCategory.delegate = self
         dateFormatter.dateFormat = "EEE yyyy-MM-dd"
         
         timeFormatter.dateFormat = "HH"
@@ -138,6 +153,9 @@ class ViewController: UIViewController {
         }
         txDateToDo.inputView = datePicker
         
+        txCategoryToDo.inputView = pickerCategory
+       
+        
         
     }
 
@@ -146,7 +164,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func closeAddToDoView(_ sender: Any) {
-        self.isShowAddToDo(isShow: false)
+        categoryActionSchedule = "add"
+        self.isShowAddToDo(isShow: false, category: categoryActionSchedule, dict: [:])
     }
     
     
@@ -154,7 +173,8 @@ class ViewController: UIViewController {
         print("Add Item")
         txNameToDo.text = ""
         txCategoryToDo.text = ""
-        self.isShowAddToDo(isShow: true)
+        categoryActionSchedule = "add"
+        self.isShowAddToDo(isShow: true, category: categoryActionSchedule, dict: [:])
     }
     
     @IBAction func actSetting(_ sender: Any) {
@@ -168,10 +188,21 @@ class ViewController: UIViewController {
         }else {
             let tempDict = [ Fieldname().nameTD : txNameToDo.text ?? "" ,
                              Fieldname().categoryTD : txCategoryToDo.text ?? "" ,
-                             Fieldname().dateTD : txDateToDo.text ?? ""] as [String : Any]
-            arrayToDo.append(tempDict)
+                             Fieldname().dateTD : txDateToDo.text ?? "",
+                             Fieldname().hexaTD : hexaToSave] as [String : Any]
+            if categoryActionSchedule == "add"{
+                arrayToDo.append(tempDict)
+//                Sessions().addToDoList(array: arrayToDo)
+//                self.isShowAddToDo(isShow: false, category: "add", dict: [:])
+//                self.tblToDo.reloadData()
+            }else{
+                arrayToDo[indexChanged] = tempDict
+               
+                print("putCategory")
+            }
+            
             Sessions().addToDoList(array: arrayToDo)
-            self.isShowAddToDo(isShow: false)
+            self.isShowAddToDo(isShow: false, category: "add", dict: [:])
             self.tblToDo.reloadData()
             
         }
@@ -186,27 +217,52 @@ class ViewController: UIViewController {
         
     }
     
-    func isShowAddToDo(isShow: Bool){
+    func isShowAddToDo(isShow: Bool, category : String , dict : NSDictionary){
        
-        
-        if isShow {
-            self.addToDoView.center = CGPoint(x: self.view.center.x , y : self.view.center.y)
-            self.addToDoView.alpha = 1
-            
-            self.isShowDimView(isShow: true)
-            self.view.addSubview(self.addToDoView)
-            
-            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [],  animations: {
-                self.addToDoView.transform = CGAffineTransform(scaleX: 0.8, y: 1.2)
-                self.addToDoView.transform = .identity
-            })
-        }else{
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
-                self.addToDoView.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
-            }) { (success) in
-              //  self.isShowDimWithLoading(isDim: false, isLoading: false)
-                self.isShowDimView(isShow: false)
-                self.addToDoView.removeFromSuperview()
+        if category == "add"{
+                if isShow {
+                    self.addToDoView.center = CGPoint(x: self.view.center.x , y : self.view.center.y)
+                    self.addToDoView.alpha = 1
+                    
+                    self.isShowDimView(isShow: true)
+                    self.view.addSubview(self.addToDoView)
+                    
+                    UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [],  animations: {
+                        self.addToDoView.transform = CGAffineTransform(scaleX: 0.8, y: 1.2)
+                        self.addToDoView.transform = .identity
+                    })
+                }else{
+                    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+                        self.addToDoView.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+                    }) { (success) in
+                      //  self.isShowDimWithLoading(isDim: false, isLoading: false)
+                        self.isShowDimView(isShow: false)
+                        self.addToDoView.removeFromSuperview()
+                    }
+                }
+        }else if category == "put" {
+            if isShow {
+                self.addToDoView.center = CGPoint(x: self.view.center.x , y : self.view.center.y)
+                self.addToDoView.alpha = 1
+                
+                self.isShowDimView(isShow: true)
+                txDateToDo.text = dict[Fieldname().dateTD] as? String ?? ""
+                txCategoryToDo.text = dict[Fieldname().categoryTD] as? String ?? ""
+                txNameToDo.text = dict[Fieldname().nameTD] as? String ?? ""
+                self.view.addSubview(self.addToDoView)
+                
+                UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [],  animations: {
+                    self.addToDoView.transform = CGAffineTransform(scaleX: 0.8, y: 1.2)
+                    self.addToDoView.transform = .identity
+                })
+            }else{
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+                    self.addToDoView.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+                }) { (success) in
+                    //  self.isShowDimWithLoading(isDim: false, isLoading: false)
+                    self.isShowDimView(isShow: false)
+                    self.addToDoView.removeFromSuperview()
+                }
             }
         }
     }
@@ -251,16 +307,41 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource
                                                  for: indexPath) as! TableViewCell
          let dictData = arrayToDo[indexPath.row] as! NSDictionary
         print("dictData : \(dictData)")
-       // cell.contentView.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .yellow))
-        if(fmod(Double(indexPath.row), 2) == 0){
-        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .yellow))
-        }else {
-        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .red))
-        }
+//        if(fmod(Double(indexPath.row), 2) == 0){
+//        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .yellow))
+//        }else {
+//        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .red))
+//        }
+        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: self.hexStringToUIColor(hex: dictData[Fieldname().hexaTD] as? String ?? "#FFFFFF")))
+        
+
         cell.lblNameToDo.text = dictData[Fieldname().nameTD] as? String ?? ""
         cell.lblDateToDo.text = dictData[Fieldname().dateTD] as? String ?? ""
         cell.lblCategoryToDo.text = dictData[Fieldname().categoryTD] as? String ?? ""
         return cell
+    }
+    
+    
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
     }
     
     func createGradientLayer(firstColor : UIColor , secondColor : UIColor) -> CALayer{
@@ -278,7 +359,20 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource
                 self.tblToDo.deleteRows(at: [indexPath], with: .automatic)
                
             }
+            
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if tableView == tblToDo {
+            let tempDict = arrayToDo[indexPath.row] as! NSDictionary
+            print("select : \(tempDict)")
+            categoryActionSchedule = "put"
+            indexChanged = indexPath.row
+            self.isShowAddToDo(isShow: true, category: categoryActionSchedule, dict: tempDict)
+        }
+        
     }
     
     /*
@@ -302,13 +396,9 @@ extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        var result = Int()
-       
-//        if pickerView == timePickerView {
-//            result = listTimeInput.count
-//        }
+
         
-        return Fieldname().setColors.count
+        return arrayCategory.count
     }
     
     // The data to return for the row and component (column) that's being passed in
@@ -320,14 +410,19 @@ extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
 //        if pickerView == timePickerView {
 //            result = String("\(listTimeInput[row]):00")
 //        }
-        result  = Fieldname().setColors[row]
+        let tempDictColor = arrayCategory[row] as! NSDictionary
+        result  = tempDictColor["name"] as? String ?? ""
         return result
     }
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(row)
-      
+        var result = String()
+        let tempDictColor = arrayCategory[row] as! NSDictionary
+        result = tempDictColor["name"] as? String ?? ""
+        hexaToSave = tempDictColor["hexa"] as? String ?? ""
+        txCategoryToDo.text = result
     }
 }
 
