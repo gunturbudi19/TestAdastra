@@ -109,6 +109,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="To Do App" id="W8r-dW-TCe">
+                        <barButtonItem key="backBarButtonItem" title=" " id="86Q-Nk-kTA"/>
                         <barButtonItem key="leftBarButtonItem" image="icSetting" id="ikb-IA-kZs">
                             <connections>
                                 <action selector="actSetting:" destination="BYZ-38-t0r" id="iAy-Bx-JVe"/>
@@ -153,8 +154,11 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ea1-GV-Qpv">
-                            <rect key="frame" x="16" y="71" width="129" height="30"/>
+                            <rect key="frame" x="16" y="74" width="129" height="30"/>
                             <state key="normal" title="Add New Category"/>
+                            <connections>
+                                <segue destination="F9v-L0-eBC" kind="show" identifier="segueToAddCategory" id="KvQ-Zn-Pyv"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -162,7 +166,7 @@
                         <constraint firstItem="lF3-2X-cj2" firstAttribute="trailing" secondItem="Uzr-3f-Vl8" secondAttribute="trailing" constant="16" id="45Q-cu-4O1"/>
                         <constraint firstItem="XxK-w6-1L7" firstAttribute="leading" secondItem="ehD-Zb-w5p" secondAttribute="trailing" constant="16" id="9aX-2F-vYz"/>
                         <constraint firstItem="XxK-w6-1L7" firstAttribute="top" secondItem="Uzr-3f-Vl8" secondAttribute="bottom" constant="5" id="OQl-p4-tDv"/>
-                        <constraint firstItem="ea1-GV-Qpv" firstAttribute="top" secondItem="ehD-Zb-w5p" secondAttribute="bottom" constant="6" id="VEO-4a-hkj"/>
+                        <constraint firstItem="ea1-GV-Qpv" firstAttribute="top" secondItem="ehD-Zb-w5p" secondAttribute="bottom" constant="9" id="VEO-4a-hkj"/>
                         <constraint firstItem="ea1-GV-Qpv" firstAttribute="leading" secondItem="ehD-Zb-w5p" secondAttribute="leading" id="X70-eR-4Mr"/>
                         <constraint firstItem="ehD-Zb-w5p" firstAttribute="centerY" secondItem="XxK-w6-1L7" secondAttribute="centerY" id="aLb-L5-Jrj"/>
                         <constraint firstItem="Uzr-3f-Vl8" firstAttribute="top" secondItem="lF3-2X-cj2" secondAttribute="top" constant="9" id="dYG-XP-SN0"/>
@@ -271,6 +275,104 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="132" y="133.5832083958021"/>
+        </scene>
+        <!--CategoryVC-->
+        <scene sceneID="FWf-aX-tXR">
+            <objects>
+                <viewController id="F9v-L0-eBC" customClass="CategoryVC" customModule="TestAdastra" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i7h-4x-eCn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Name : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tns-LT-CBp">
+                                <rect key="frame" x="16" y="98" width="134" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Name of New Category Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I2d-Fy-gsP">
+                                <rect key="frame" x="16" y="127" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="F9v-L0-eBC" id="0e9-QM-qkL"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lJ-IH-OLc">
+                                <rect key="frame" x="16" y="170" width="105" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sca-7s-z6m">
+                                <rect key="frame" x="123" y="609" width="129" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add New Category"/>
+                                <connections>
+                                    <action selector="actAddCategory:" destination="F9v-L0-eBC" eventType="touchUpInside" id="Mrh-kg-ihR"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Put Hexa Value Here (ex : #FFFFFF)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eiz-BI-12T">
+                                <rect key="frame" x="16" y="199" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="250" constant="250" id="L3R-dV-LqZ"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="F9v-L0-eBC" id="diS-Od-V8k"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preview :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hez-jp-ihZ">
+                                <rect key="frame" x="16" y="237" width="69.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZj-1N-2Ui" customClass="RoundCornerView" customModule="TestAdastra" customModuleProvider="target">
+                                <rect key="frame" x="16" y="266" width="134" height="116"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="134" id="jrv-3M-jbL"/>
+                                    <constraint firstAttribute="height" constant="116" id="qV2-KR-PER"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tns-LT-CBp" firstAttribute="leading" secondItem="9FK-h2-gLz" secondAttribute="leading" constant="16" id="7XE-4Y-SqM"/>
+                            <constraint firstItem="9FK-h2-gLz" firstAttribute="trailing" secondItem="I2d-Fy-gsP" secondAttribute="trailing" constant="16" id="BMt-uQ-AOD"/>
+                            <constraint firstItem="Eiz-BI-12T" firstAttribute="top" secondItem="7lJ-IH-OLc" secondAttribute="bottom" constant="8" id="GRS-jA-wb4"/>
+                            <constraint firstItem="tns-LT-CBp" firstAttribute="top" secondItem="9FK-h2-gLz" secondAttribute="top" constant="34" id="Otm-hb-p1T"/>
+                            <constraint firstItem="Eiz-BI-12T" firstAttribute="leading" secondItem="7lJ-IH-OLc" secondAttribute="leading" id="TG6-QR-CRE"/>
+                            <constraint firstItem="7lJ-IH-OLc" firstAttribute="top" secondItem="I2d-Fy-gsP" secondAttribute="bottom" constant="13" id="VHJ-u4-KBL"/>
+                            <constraint firstItem="Eiz-BI-12T" firstAttribute="trailing" secondItem="I2d-Fy-gsP" secondAttribute="trailing" id="e1f-9y-CiS"/>
+                            <constraint firstItem="cZj-1N-2Ui" firstAttribute="top" secondItem="hez-jp-ihZ" secondAttribute="bottom" constant="8" id="eQv-Hg-7WX"/>
+                            <constraint firstItem="I2d-Fy-gsP" firstAttribute="top" secondItem="tns-LT-CBp" secondAttribute="bottom" constant="8" id="hsA-Aa-fBQ"/>
+                            <constraint firstItem="cZj-1N-2Ui" firstAttribute="leading" secondItem="hez-jp-ihZ" secondAttribute="leading" id="ldn-nZ-cWS"/>
+                            <constraint firstItem="hez-jp-ihZ" firstAttribute="top" secondItem="Eiz-BI-12T" secondAttribute="bottom" constant="8" id="rPe-df-Wc3"/>
+                            <constraint firstItem="hez-jp-ihZ" firstAttribute="leading" secondItem="Eiz-BI-12T" secondAttribute="leading" id="sds-Fz-HaU"/>
+                            <constraint firstItem="I2d-Fy-gsP" firstAttribute="leading" secondItem="tns-LT-CBp" secondAttribute="leading" id="xdn-TB-aiM"/>
+                            <constraint firstItem="7lJ-IH-OLc" firstAttribute="leading" secondItem="I2d-Fy-gsP" secondAttribute="leading" id="znK-5z-ERd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9FK-h2-gLz"/>
+                    </view>
+                    <connections>
+                        <outlet property="colorPreview" destination="cZj-1N-2Ui" id="JEA-Jd-8Sz"/>
+                        <outlet property="txCategoryName" destination="I2d-Fy-gsP" id="7gs-fY-FT5"/>
+                        <outlet property="txHexaColor" destination="Eiz-BI-12T" id="dyK-QU-SzX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ruD-Rk-guI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="991.20000000000005" y="139.880059970015"/>
         </scene>
     </scenes>
     <resources>

@@ -22,10 +22,10 @@ class Fieldname: NSObject {
     
     let colors : NSArray = [
         ["name": "Dark Green", "hexa": "#79A700" , "category" : "Home"]
-        ,["name": "Dark Yellow", "hexa": "#E2B400" , "category" : ""]
-        ,["name": "Green", "hexa": "#C6DA02" , "category" : ""]
-        ,["name": "Pink", "hexa": "#FF6E83" , "category" : ""]
-        ,["name": "Orange", "hexa": "#F68B2C" , "category" : ""]
-        ,["name": "Red", "hexa": "#F5522D" , "category" : ""]
+        ,["name": "Dark Yellow", "hexa": "#E2B400" , "category" : "Outdoor"]
+        ,["name": "Green", "hexa": "#C6DA02" , "category" : "School"]
+        ,["name": "Pink", "hexa": "#FF6E83" , "category" : "Office"]
+        ,["name": "Orange", "hexa": "#F68B2C" , "category" : "Social"]
+        ,["name": "Red", "hexa": "#F5522D" , "category" : "Hobby"]
     ]
 }

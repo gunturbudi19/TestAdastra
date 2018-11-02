@@ -36,7 +36,7 @@ class ViewController: UIViewController {
    
     
     override func viewWillAppear(_ animated: Bool) {
-       // self.checkToDo()
+       self.checkToDo()
     }
     
     override func viewDidLoad() {
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         self.formatInputKeyboard()
         self.formatAccessoryKeyboard()
         categoryActionSchedule = "add"
-        self.checkToDo()
+        //self.checkToDo()
         isKeyboardShown = false
         
         self.registerForKeyboardNotification()
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     func checkToDo(){
         arrayToDo = UserDefaults.standard.value(forKey: Fieldname().toDoName) as? Array<Any> ?? []
         arrayCategory = UserDefaults.standard.value(forKey: Fieldname().colorLibrary) as? Array<Any> ?? []
-        print(arrayToDo)
+//        print(arrayToDo)
         if arrayToDo.count == 0 {
             print("No Data")
         }else{
@@ -64,9 +64,18 @@ class ViewController: UIViewController {
         
         if arrayCategory.count == 0 {
             arrayCategory = Fieldname().colors as! [Any]
+            Sessions().addColorLibrary(array: arrayCategory as NSArray)
         }
         
+        print("arrayCategory : \(arrayCategory)")
         
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToAddCategory"{
+            self.isShowSettings(isShow: false)
+        }
     }
     
     func formatView(){
@@ -190,6 +199,7 @@ class ViewController: UIViewController {
                              Fieldname().categoryTD : txCategoryToDo.text ?? "" ,
                              Fieldname().dateTD : txDateToDo.text ?? "",
                              Fieldname().hexaTD : hexaToSave] as [String : Any]
+            
             if categoryActionSchedule == "add"{
                 arrayToDo.append(tempDict)
 //                Sessions().addToDoList(array: arrayToDo)
@@ -253,7 +263,7 @@ class ViewController: UIViewController {
                 
                 for index in 0..<tempColors.count{
                     let tempDictColor = tempColors[index] as! NSDictionary
-                    if(tempDictColor["name"] as? String ?? "#FFFFFF" == txCategoryToDo.text){
+                    if(tempDictColor["category"] as? String ?? "#FFFFFF" == txCategoryToDo.text){
                         hexaToSave = tempDictColor["hexa"] as! String
                     }
                 }
@@ -316,13 +326,13 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: idIdentifier,
                                                  for: indexPath) as! TableViewCell
          let dictData = arrayToDo[indexPath.row] as! NSDictionary
-        print("dictData : \(dictData)")
+      //  print("dictData : \(dictData)")
 //        if(fmod(Double(indexPath.row), 2) == 0){
 //        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .yellow))
 //        }else {
 //        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: .red))
 //        }
-        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: self.hexStringToUIColor(hex: dictData[Fieldname().hexaTD] as? String ?? "#FFFFFF")))
+        cell.viewBG.layer.addSublayer(self.createGradientLayer(firstColor: .white, secondColor: GlobalMethod().hexStringToUIColor(hex: dictData[Fieldname().hexaTD] as? String ?? "#FFFFFF")))
         
 
         cell.lblNameToDo.text = dictData[Fieldname().nameTD] as? String ?? ""
@@ -332,27 +342,7 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource
     }
     
     
-    func hexStringToUIColor (hex:String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
-        if (cString.hasPrefix("#")) {
-            cString.remove(at: cString.startIndex)
-        }
-        
-        if ((cString.count) != 6) {
-            return UIColor.gray
-        }
-        
-        var rgbValue:UInt32 = 0
-        Scanner(string: cString).scanHexInt32(&rgbValue)
-        
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
-    }
+    
     
     func createGradientLayer(firstColor : UIColor , secondColor : UIColor) -> CALayer{
         gradientLayer = CAGradientLayer()
@@ -377,7 +367,7 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource
         
         if tableView == tblToDo {
             let tempDict = arrayToDo[indexPath.row] as! NSDictionary
-            print("select : \(tempDict)")
+//            print("select : \(tempDict)")
             categoryActionSchedule = "put"
             indexChanged = indexPath.row
             self.isShowAddToDo(isShow: true, category: categoryActionSchedule, dict: tempDict)
@@ -421,16 +411,16 @@ extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
 //            result = String("\(listTimeInput[row]):00")
 //        }
         let tempDictColor = arrayCategory[row] as! NSDictionary
-        result  = tempDictColor["name"] as? String ?? ""
+        result  = tempDictColor["category"] as? String ?? ""
         return result
     }
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(row)
+//        print(row)
         var result = String()
         let tempDictColor = arrayCategory[row] as! NSDictionary
-        result = tempDictColor["name"] as? String ?? ""
+        result = tempDictColor["category"] as? String ?? ""
         hexaToSave = tempDictColor["hexa"] as? String ?? ""
         txCategoryToDo.text = result
     }
@@ -446,7 +436,7 @@ extension ViewController: UITextFieldDelegate{
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("Begin Editing")
+//        print("Begin Editing")
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -456,7 +446,7 @@ extension ViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         let dateOrder = "\(dateFormatter.string(from: datePicker.date))"
-        print(dateOrder)
+//        print(dateOrder)
         if textField.isEqual(txDateToDo){
             txDateToDo.text = dateOrder
         }

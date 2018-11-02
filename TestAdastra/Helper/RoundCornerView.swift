@@ -34,9 +34,9 @@ class RoundCornerView: UIView {
         layer.cornerRadius = 20
         
         layer.shadowColor = UIColor.darkText.cgColor
-        layer.shadowOpacity = 0.7
-        layer.shadowOffset = CGSize(width: 1.5, height: -1)
-        layer.shadowRadius = 5
+        layer.shadowOpacity = 0.2
+        layer.shadowOffset = CGSize(width: 0.75, height: -0.75)
+        layer.shadowRadius = 4
         layer.masksToBounds = false
         layer.shadowPath = UIBezierPath(rect: CGRect(x: self.bounds.origin.x+2, y: self.bounds.origin.y+5.0, width: self.bounds.width, height: self.bounds.height)).cgPath
     }
