@@ -17,6 +17,7 @@
 		B82BF38A218B944E00BD0F8A /* TestAdastraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BF389218B944E00BD0F8A /* TestAdastraUITests.swift */; };
 		B82BF399218BF74600BD0F8A /* GlobalMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BF398218BF74600BD0F8A /* GlobalMethod.swift */; };
 		B82BF39B218BF75900BD0F8A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BF39A218BF75900BD0F8A /* TableViewCell.swift */; };
+		B82BF39D218C004A00BD0F8A /* Sessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BF39C218C004A00BD0F8A /* Sessions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		B82BF38B218B944E00BD0F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B82BF398218BF74600BD0F8A /* GlobalMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMethod.swift; sourceTree = "<group>"; };
 		B82BF39A218BF75900BD0F8A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		B82BF39C218C004A00BD0F8A /* Sessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sessions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				B82BF398218BF74600BD0F8A /* GlobalMethod.swift */,
 				B82BF39A218BF75900BD0F8A /* TableViewCell.swift */,
+				B82BF39C218C004A00BD0F8A /* Sessions.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			files = (
 				B82BF39B218BF75900BD0F8A /* TableViewCell.swift in Sources */,
 				B82BF369218B944D00BD0F8A /* ViewController.swift in Sources */,
+				B82BF39D218C004A00BD0F8A /* Sessions.swift in Sources */,
 				B82BF36F218B944D00BD0F8A /* TestAdastra.xcdatamodeld in Sources */,
 				B82BF367218B944D00BD0F8A /* AppDelegate.swift in Sources */,
 				B82BF399218BF74600BD0F8A /* GlobalMethod.swift in Sources */,

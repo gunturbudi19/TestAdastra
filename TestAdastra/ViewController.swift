@@ -18,6 +18,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    @IBAction func actAdd(_ sender: Any) {
+        print("Add Item")
+    }
+    
+    @IBAction func actSetting(_ sender: Any) {
+        print("Setting")
+    }
+    
 
 }
 

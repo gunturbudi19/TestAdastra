@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-684" y="134"/>
         </scene>
-        <!--View Controller-->
+        <!--To Do App-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TestAdastra" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,7 +38,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="114" id="o8T-FL-yVM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="114" id="o8T-FL-yVM" customClass="TableViewCell" customModule="TestAdastra" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o8T-FL-yVM" id="BCq-z2-dvs">
@@ -52,10 +52,18 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="W8r-dW-TCe">
+                    <navigationItem key="navigationItem" title="To Do App" id="W8r-dW-TCe">
                         <rightBarButtonItems>
-                            <barButtonItem title="Item 2" id="EF2-87-8dA"/>
-                            <barButtonItem title="Item 1" id="ikb-IA-kZs"/>
+                            <barButtonItem image="icAdd" id="EF2-87-8dA">
+                                <connections>
+                                    <action selector="actAdd:" destination="BYZ-38-t0r" id="IBp-Hd-Jtv"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="icSetting" id="ikb-IA-kZs">
+                                <connections>
+                                    <action selector="actSetting:" destination="BYZ-38-t0r" id="iAy-Bx-JVe"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
@@ -64,4 +72,8 @@
             <point key="canvasLocation" x="132" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icAdd" width="20" height="20"/>
+        <image name="icSetting" width="20" height="20"/>
+    </resources>
 </document>
