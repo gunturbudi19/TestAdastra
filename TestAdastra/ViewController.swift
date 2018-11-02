@@ -248,6 +248,16 @@ class ViewController: UIViewController {
                 self.isShowDimView(isShow: true)
                 txDateToDo.text = dict[Fieldname().dateTD] as? String ?? ""
                 txCategoryToDo.text = dict[Fieldname().categoryTD] as? String ?? ""
+                
+                var tempColors = arrayCategory
+                
+                for index in 0..<tempColors.count{
+                    let tempDictColor = tempColors[index] as! NSDictionary
+                    if(tempDictColor["name"] as? String ?? "#FFFFFF" == txCategoryToDo.text){
+                        hexaToSave = tempDictColor["hexa"] as! String
+                    }
+                }
+                
                 txNameToDo.text = dict[Fieldname().nameTD] as? String ?? ""
                 self.view.addSubview(self.addToDoView)
                 
